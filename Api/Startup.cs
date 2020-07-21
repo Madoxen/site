@@ -10,9 +10,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
-namespace api
+
+namespace Api
 {
+    
+    using Models;
+    using Services;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -25,6 +31,16 @@ namespace api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Configure DB settings
+            services.Configure<PostDatabaseSettings>(
+                Configuration.GetSection(nameof(PostDatabaseSettings)));
+
+            services.AddSingleton<IPostDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<PostDatabaseSettings>>().Value);
+
+            //Register our MongoDB service
+            services.AddSingleton<PostService>();
+
             services.AddControllers();
         }
 
