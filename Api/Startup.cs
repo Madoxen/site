@@ -18,6 +18,7 @@ namespace Api
     
     using Models;
     using Services;
+    
 
     public class Startup
     {
@@ -32,14 +33,14 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             //Configure DB settings
-            services.Configure<PostDatabaseSettings>(
-                Configuration.GetSection(nameof(PostDatabaseSettings)));
+            services.Configure<BlogEntryDatabaseSettings>(
+                Configuration.GetSection(nameof(BlogEntryDatabaseSettings)));
 
-            services.AddSingleton<IPostDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<PostDatabaseSettings>>().Value);
+            services.AddSingleton<IBlogEntryDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<BlogEntryDatabaseSettings>>().Value);
 
             //Register our MongoDB service
-            services.AddSingleton<PostService>();
+            services.AddSingleton<BlogService>();
 
             services.AddControllers();
         }
