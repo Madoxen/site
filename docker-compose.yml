@@ -1,10 +1,22 @@
-version: '3'
-    
+version: "3"
+
 services:
-  db: #add postgress DB
-    image: postgres 
+  mongo: #our mongoDB instance that will hold post data
+    image: mongo
+    restart: always
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-  
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    depends_on: 
+      - mongo
+
+    

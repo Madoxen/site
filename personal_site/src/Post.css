@@ -1,0 +1,11 @@
+.Post{
+    text-align: left;   
+}
+
+.PostContainer
+{
+    position: relative;
+    top: 10%;
+    left: 25%;
+    right: 75%;
+}

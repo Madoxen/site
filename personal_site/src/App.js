@@ -1,25 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+import PostContainer from './PostContainer'
 import './App.css';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <p>it's me!</p>
+        <PostContainer/>
     </div>
   );
+}
+
+
+//Fetches all posts from the backend
+function FetchAllPosts()
+{
+
 }
 
 export default App;
