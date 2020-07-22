@@ -53,7 +53,9 @@ namespace Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+
+            //We dont need to expose HTTPS in docker 
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

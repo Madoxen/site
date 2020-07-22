@@ -3,14 +3,16 @@ version: "3"
 services:
   mongo: #our mongoDB instance that will hold post data
     image: mongo
-    restart: always
+    restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - "dbdata:/data/db" #use volumes for persisting data
 
   mongo-express: #mongo admin access
     image: mongo-express
-    restart: always
+    restart: unless-stopped
     ports:
       - 8081:8081 #IMPORTANT: deploy on not forwarded port to avoid unauthorized access
     environment:
@@ -22,12 +24,19 @@ services:
 
   web: #our NGINX instance that will serve website and will expose API service
     image: nginx
-    build: ./nginx_confs
+    restart: unless-stopped
     ports:
       - 80:80
       - 443:443
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf  #use bind mount for configuration files
+      - ./personal_site/build:/var/www
+      
 
-
-    
+  api: #our ASP CORE Api
+      build: ./Api
+      restart: unless-stopped
+      
+volumes:
+  dbdata:
+    driver: local
