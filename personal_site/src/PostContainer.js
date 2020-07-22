@@ -7,18 +7,56 @@ import Post from './Post'
 class PostContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { posts: {} };
   }
 
+  componentDidMount()
+  {
+    this.fetchAllPosts();
+  }
+
+
   render() {
+
+    var p = [];
+    if (this.state.posts != null) {
+      for (var post in this.state.posts) {
+        const currPost = this.state.posts[post];
+        p.push(currPost);
+      }
+    }
+    else if(this.state.posts == {})
+    {
+      p = <p>Loading posts...</p>
+    }
+    else {
+      p = <p>Something went wrong :(</p>
+    }
+
+    var htmledPosts = p.map((post) => <Post date={post.date} title={post.title} contents={post.contents}/>)
     return (
       <div className="PostContainer">
-        <Post date="12.13.2020" title="My second post!" content="This is my second post! Nice!" />
-        <Post date="12.12.2020" title="My first post!" content="This is my first post! Nice!" />
+        {htmledPosts}
       </div>
     );
   }
 
 
+  //Fetches all posts from the backend
+  fetchAllPosts() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "http://localhost/api/BlogEntries");
+    xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    xhttp.setRequestHeader('Access-Control-Allow-Origin', "*");
+    var postContainer = this;
+    xhttp.onreadystatechange = function () { // Call a function when the state changes.
+      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        postContainer.setState({ posts: JSON.parse(xhttp.response) });
+        return;
+      }
+    }
+    xhttp.send();
+  }
 
 }
 

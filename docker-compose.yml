@@ -5,6 +5,7 @@ services:
     image: mongo
     restart: unless-stopped
     environment:
+    #if using this repo as base, remember to change those credentials!
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     volumes:

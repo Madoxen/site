@@ -1,3 +1,4 @@
 Api/obj
 Api/bin
 .vscode
+.env
