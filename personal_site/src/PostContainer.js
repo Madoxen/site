@@ -45,7 +45,7 @@ class PostContainer extends React.Component {
   //Fetches all posts from the backend
   fetchAllPosts() {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://localhost/api/BlogEntries");
+    xhttp.open("GET", "http://localhost/api/BlogEntries", true);
     xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
     xhttp.setRequestHeader('Access-Control-Allow-Origin', "*");
     var postContainer = this;

@@ -1,11 +1,17 @@
-.Post{
+.Post {
     text-align: left;   
+    background: #4287f5;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 10px;
 }
 
-.PostContainer
-{
-    position: relative;
+.PostContainer {
+    position: absolute;
     top: 10%;
     left: 25%;
-    right: 75%;
+    right: 25%;
+    text-align: center;
+    background: lightblue;
+    border-radius: 25px;
 }
