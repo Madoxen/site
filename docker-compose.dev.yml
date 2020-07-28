@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  mongo: #our mongoDB instance that will hold post data
+    image: mongo
+    restart: unless-stopped
+    environment:
+    #if using this repo as base, remember to change those credentials!
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - "dbdata:/data/db" #use volumes for persisting data
+
+  mongo-express: #mongo admin access
+    image: mongo-express
+    restart: unless-stopped
+    ports:
+      - 8081:8081 #IMPORTANT: deploy on not forwarded port to avoid unauthorized access
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    depends_on:
+      - mongo
+
+
+  web: #our nodejs dev server
+    build:
+      context: ./personal_site
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./personal_site:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    tty: true
+
+
+  api: #our ASP CORE Api
+      build: ./Api
+      restart: unless-stopped
+
+  router: #our NGINX instance that will serve website and will expose API service
+    image: nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./personal_site/nginx.dev.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web
+      - api
+
+      
+
+      
+volumes:
+  dbdata:
+    driver: local
+  certbot-etc:
+  certbot-var:
+  web-root:

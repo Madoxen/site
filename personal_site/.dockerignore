@@ -1,0 +1,7 @@
+build
+node_modules
+Dockerfile.dev
+Dockerfile.prod
+nginx.dev.conf
+nginx.prod.conf
+.gitignore

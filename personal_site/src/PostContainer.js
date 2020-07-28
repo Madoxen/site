@@ -45,9 +45,8 @@ class PostContainer extends React.Component {
   //Fetches all posts from the backend
   fetchAllPosts() {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://localhost/api/BlogEntries", true);
+    xhttp.open("GET", "/api/BlogEntries", true);
     xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhttp.setRequestHeader('Access-Control-Allow-Origin', "*");
     var postContainer = this;
     xhttp.onreadystatechange = function () { // Call a function when the state changes.
       if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {

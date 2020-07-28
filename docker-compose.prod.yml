@@ -6,8 +6,8 @@ services:
     restart: unless-stopped
     environment:
     #if using this repo as base, remember to change those credentials!
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_USERNAME: prodRootAcc
+      MONGO_INITDB_ROOT_PASSWORD: BloodyDBAccess#111
     volumes:
       - "dbdata:/data/db" #use volumes for persisting data
 
@@ -17,21 +17,20 @@ services:
     ports:
       - 8081:8081 #IMPORTANT: deploy on not forwarded port to avoid unauthorized access
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_ADMINUSERNAME: prodRootAcc
+      ME_CONFIG_MONGODB_ADMINPASSWORD: BloodyDBAccess#111
     depends_on:
       - mongo
 
 
   web: #our NGINX instance that will serve website and will expose API service
-    image: nginx
+    build:
+      context: ./personal_site
+      dockerfile: Dockerfile.prod
     restart: unless-stopped
     ports:
       - 80:80
       - 443:443
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf  #use bind mount for configuration files
-      - ./personal_site/build:/var/www
       
 
   api: #our ASP CORE Api
@@ -41,3 +40,6 @@ services:
 volumes:
   dbdata:
     driver: local
+  certbot-etc:
+  certbot-var:
+  web-root:
