@@ -1,5 +1,6 @@
 Api/obj
 Api/bin
+Api/appsettings.json
 .vscode
 .env
 .pem
