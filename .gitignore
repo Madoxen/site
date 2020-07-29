@@ -2,3 +2,5 @@ Api/obj
 Api/bin
 .vscode
 .env
+.pem
+.prod
