@@ -33,7 +33,7 @@ class PostContainer extends React.Component {
       p = <p>Something went wrong :(</p>
     }
 
-    var htmledPosts = p.map((post) => <Post date={post.date} title={post.title} contents={post.contents}/>)
+    var htmledPosts = p.map((post) => <Post key={post.id} date={post.date} title={post.title} contents={post.contents}/>)
     return (
       <div className="PostContainer">
         {htmledPosts}
