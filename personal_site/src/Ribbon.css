@@ -1,8 +1,8 @@
 .Ribbon
 {
-    position: absolute;
-    left:0%;
-    right:0%;
+    position: static;
+    padding-top: 1px;
+    padding-bottom: 1px;
     background: #29434e;
     color: white;
     font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;

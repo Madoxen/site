@@ -7,11 +7,12 @@
 }
 
 .PostContainer {
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    right: 10%;
+    position: static;
     text-align: center;
     background: #607d8b;
     border-radius: 25px;
+    margin-top: 30px;
+    padding-top: 5px;
+    margin-bottom: 30px;
+    padding-bottom: 5px;
 }
