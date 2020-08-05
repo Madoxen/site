@@ -12,7 +12,7 @@ class Post extends React.Component {
       <div className="Post">
         <h1>{this.props.title}</h1>  {/* post title */}
         <p>{this.props.date}</p> {/*post date*/}
-        <p>{this.props.contents}</p>  {/* post content */}
+        <div dangerouslySetInnerHTML={{__html: this.props.contents}}></div>  {/* post content */}
       </div>
     );
   }
