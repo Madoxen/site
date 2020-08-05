@@ -1,18 +1,25 @@
 import React from 'react';
 import PostContainer from './PostContainer'
+import Ribbon from './Ribbon'
 import './App.css';
 
 
-function App() {
-  return (
-    <div className="App">
-      <p>it's me!</p>
-      <PostContainer/>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+
+  render()
+  {
+    return (
+      <div className="App">
+        <Ribbon></Ribbon>
+        <PostContainer/>
+      </div>
+    );
+  }
 }
-
-
 
 
 

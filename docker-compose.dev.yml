@@ -54,8 +54,6 @@ services:
       - api
 
       
-
-      
 volumes:
   dbdata:
     driver: local
