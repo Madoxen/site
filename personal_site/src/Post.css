@@ -1,6 +1,6 @@
 .Post {
     text-align: left;   
-    background: #4287f5;
+    background: #8eacbb;
     border-radius: 25px;
     padding: 10px;
     margin: 10px;
@@ -12,6 +12,6 @@
     left: 10%;
     right: 10%;
     text-align: center;
-    background: lightblue;
+    background: #607d8b;
     border-radius: 25px;
 }
