@@ -3,6 +3,7 @@
     position: static;
     padding-top: 1px;
     padding-bottom: 1px;
+    padding-left: 10px;
     background: #29434e;
     color: white;
     font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
@@ -10,15 +11,11 @@
 
 .Ribbon-Header
 {
-    position: relative;
-    left: 10px;
     margin-bottom: 0;
 }
 
 .Ribbon-SubHeader
 {
-    position: relative;
-    left: 10px;
     margin-top: 0;
 }
 

@@ -10,8 +10,8 @@ class Post extends React.Component {
   render() {
     return (
       <div className="Post">
-        <h1>{this.props.title}</h1>  {/* post title */}
-        <p>{this.props.date}</p> {/*post date*/}
+        <h1 className="Post-Header">{this.props.title}</h1>  {/* post title */}
+        <p className="Post-Date">{this.props.date}</p> {/*post date*/}
         <div dangerouslySetInnerHTML={{__html: this.props.contents}}></div>  {/* post content */}
       </div>
     );

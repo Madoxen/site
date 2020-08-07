@@ -11,8 +11,16 @@
     text-align: center;
     background: #607d8b;
     border-radius: 25px;
-    margin-top: 30px;
+    margin-top: 5px;
     padding-top: 5px;
-    margin-bottom: 30px;
     padding-bottom: 5px;
+}
+
+.Post-Header {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.Post-Date{
+    margin-top: 0px;
 }
