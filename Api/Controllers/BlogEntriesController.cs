@@ -24,9 +24,9 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<BlogEntry> Get()
+        public async Task<IEnumerable<BlogEntry>> Get()
         {
-            return _blogService.Get();
+            return await _blogService.Get();
         }
     }
 }

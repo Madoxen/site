@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Api.Services
 {
+    using System.Threading.Tasks;
     using Models;
 
 
@@ -23,25 +24,28 @@ namespace Api.Services
             
         }
 
-        public List<BlogEntry> Get() =>
-            _posts.Find(entry => true).ToList();
-
-        public BlogEntry Get(string id) =>
-            _posts.Find<BlogEntry>(entry => entry.Id == id).FirstOrDefault();
-
-        public BlogEntry Create(BlogEntry entry)
+        public async Task<IEnumerable<BlogEntry>> Get()
         {
-            _posts.InsertOne(entry);
+            return (await _posts.FindAsync(entry => true)).ToList().OrderByDescending(x=>x.Date);
+        }
+            
+
+        public async Task<BlogEntry> Get(string id) =>
+            await _posts.FindAsync<BlogEntry>(entry => entry.Id == id).Result.FirstOrDefaultAsync();
+
+        public async Task<BlogEntry> Create(BlogEntry entry)
+        {
+            await _posts.InsertOneAsync(entry);
             return entry;
         }
 
-        public void Update(string id, BlogEntry bookIn) =>
-            _posts.ReplaceOne(entry => entry.Id == id, bookIn);
+        public async Task Update(string id, BlogEntry bookIn) =>
+            await _posts.ReplaceOneAsync(entry => entry.Id == id, bookIn);
 
-        public void Remove(BlogEntry bookIn) =>
-            _posts.DeleteOne(entry => entry.Id == bookIn.Id);
+        public async Task Remove(BlogEntry bookIn) =>
+            await _posts.DeleteOneAsync(entry => entry.Id == bookIn.Id);
 
-        public void Remove(string id) => 
-            _posts.DeleteOne(entry => entry.Id == id);
+        public async Task Remove(string id) => 
+            await _posts.DeleteOneAsync(entry => entry.Id == id);
     }
 }
