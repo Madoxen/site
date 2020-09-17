@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Api.Models;
 using Api.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.Controllers
 {
@@ -28,5 +29,12 @@ namespace Api.Controllers
         {
             return await _blogService.Get();
         }
+        
+        [HttpGet("{id}")]
+        public async Task<BlogEntry> Get(string id)
+        {
+            return await _blogService.Get(id);
+        }
+        
     }
 }

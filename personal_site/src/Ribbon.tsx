@@ -2,8 +2,11 @@ import React from 'react';
 import './Ribbon.css';
 
 
+
+
+
 class Ribbon extends React.Component {
-  constructor(props) {
+  constructor(props : any) {
     super(props);
   }
 

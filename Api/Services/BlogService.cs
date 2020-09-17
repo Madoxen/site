@@ -39,11 +39,11 @@ namespace Api.Services
             return entry;
         }
 
-        public async Task Update(string id, BlogEntry bookIn) =>
-            await _posts.ReplaceOneAsync(entry => entry.Id == id, bookIn);
+        public async Task Update(string id, BlogEntry entryIn) =>
+            await _posts.ReplaceOneAsync(entry => entry.Id == id, entryIn);
 
-        public async Task Remove(BlogEntry bookIn) =>
-            await _posts.DeleteOneAsync(entry => entry.Id == bookIn.Id);
+        public async Task Remove(BlogEntry entryIn) =>
+            await _posts.DeleteOneAsync(entry => entry.Id == entryIn.Id);
 
         public async Task Remove(string id) => 
             await _posts.DeleteOneAsync(entry => entry.Id == id);

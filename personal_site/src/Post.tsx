@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Post.css'
 
+
+export type PostProps = {
+  title : string;
+  date : string;
+  contents : string;
+}
+
 //This is post component that represents one post
-class Post extends React.Component {
-  constructor(props) {
+class Post extends Component<PostProps> {
+  constructor(props : PostProps) {
     super(props);
   }
 

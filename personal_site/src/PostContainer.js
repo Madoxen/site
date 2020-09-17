@@ -1,6 +1,7 @@
 import React from 'react';
 import './Post.css'
 import Post from './Post'
+import AdminPost from './Admin/AdminPost';
 
 
 //This is post component that represents one post
@@ -10,8 +11,7 @@ class PostContainer extends React.Component {
     this.state = { posts: {} };
   }
 
-  componentDidMount()
-  {
+  componentDidMount() {
     this.fetchAllPosts();
   }
 
@@ -25,15 +25,17 @@ class PostContainer extends React.Component {
         p.push(currPost);
       }
     }
-    else if(this.state.posts == {})
-    {
-      p = <p>Loading posts...</p>
+
+
+    var htmledPosts = null;
+    if (this.props.isAdmin == "true") {
+      htmledPosts = p.map((post) => <AdminPost key={post.id} date={post.date} title={post.title} contents={post.contents} />)
     }
     else {
-      p = <p>Something went wrong :(</p>
+      htmledPosts = p.map((post) => <Post key={post.id} date={post.date} title={post.title} contents={post.contents} />)
     }
 
-    var htmledPosts = p.map((post) => <Post key={post.id} date={post.date} title={post.title} contents={post.contents}/>)
+
     return (
       <div className="PostContainer">
         {htmledPosts}

@@ -4,3 +4,4 @@ Api/appsettings.json
 .vscode
 .env
 .pem
+node_modules
