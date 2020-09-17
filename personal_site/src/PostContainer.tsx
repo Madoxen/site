@@ -4,11 +4,29 @@ import Post from './Post'
 import AdminPost from './Admin/AdminPost';
 
 
+
+type PostContainerProps =
+{
+  isAdmin? : boolean;
+}
+
+type PostContainerState = {
+  posts : RawPostData[];
+}
+
+type RawPostData = 
+{
+  id: string;
+  date: string;
+  contents : string;
+  title : string;
+}
+
 //This is post component that represents one post
-class PostContainer extends React.Component {
-  constructor(props) {
+class PostContainer extends React.Component<PostContainerProps, PostContainerState> {
+  constructor(props : PostContainerProps) {
     super(props);
-    this.state = { posts: {} };
+    this.state = { posts: [] };
   }
 
   componentDidMount() {
@@ -28,7 +46,7 @@ class PostContainer extends React.Component {
 
 
     var htmledPosts = null;
-    if (this.props.isAdmin == "true") {
+    if (this.props.isAdmin === true) {
       htmledPosts = p.map((post) => <AdminPost key={post.id} date={post.date} title={post.title} contents={post.contents} />)
     }
     else {

@@ -26,7 +26,7 @@ class AdminPanel extends Component<{}, AdminPanelProps> {
       <div className="App">
         <Ribbon></Ribbon>
         <button>Create new post</button>
-        <PostContainer isAdmin="true"></PostContainer>
+        <PostContainer isAdmin={true}></PostContainer>
       </div>
     );
   }
